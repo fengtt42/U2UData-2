@@ -1,0 +1,27 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="13">
+            <item index="0" class="java.lang.String" itemvalue="jax" />
+            <item index="1" class="java.lang.String" itemvalue="granular" />
+            <item index="2" class="java.lang.String" itemvalue="numpy" />
+            <item index="3" class="java.lang.String" itemvalue="colored_traceback" />
+            <item index="4" class="java.lang.String" itemvalue="nvidia-cuda-nvcc-cu12" />
+            <item index="5" class="java.lang.String" itemvalue="google-resumable-media" />
+            <item index="6" class="java.lang.String" itemvalue="ipdb" />
+            <item index="7" class="java.lang.String" itemvalue="av" />
+            <item index="8" class="java.lang.String" itemvalue="elements" />
+            <item index="9" class="java.lang.String" itemvalue="scope" />
+            <item index="10" class="java.lang.String" itemvalue="jaxtyping" />
+            <item index="11" class="java.lang.String" itemvalue="portal" />
+            <item index="12" class="java.lang.String" itemvalue="ninjax" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
