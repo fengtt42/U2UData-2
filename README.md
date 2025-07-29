@@ -7,7 +7,7 @@ Swarm UAV autonomous flight for Long-Horizon (LH) tasks is crucial for advancing
 If you find this work useful or interesting, please kindly give us a star ⭐, thanks!😀
 ---
 
-[![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://fengtongtong.github.io/static/files/publications_file/2024-MM.pdf)
+[![paper](https://img.shields.io/badge/arXiv-Paper-<COLOR>.svg)](https://fengtt42.github.io/U2UData-2/file/U2UData_2.pdf)
 [![Simulator: U2USim-2](https://img.shields.io/badge/Simulator-U2USim2-blue)](https://huggingface.co/datasets/fengtt42/U2USim-2/tree/main) 
 [![Dataset: U2UData-2](https://img.shields.io/badge/Dataset-U2Udata2-red)](https://huggingface.co/datasets/fengtt42/U2UData-2/tree/main)
 [![U2Udata-2: AirDrone and U2USim-2](https://img.shields.io/badge/Client-AirDrone-yellow)](https://huggingface.co/fengtt42/U2UData_2_Client/tree/main)
