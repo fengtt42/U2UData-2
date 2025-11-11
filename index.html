@@ -11,6 +11,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<style>
+			:root {
+				--bg: #ffffff;
+				--text: #000000;
+				--text-light: #555555;
+				--border: #eaeaea;
+				--card-bg: #fafafa;
+				--primary: #2d5af1;
+				--primary-hover: #1d4ae0;
+				--accent: #00c4b4;
+				--gray-100: #f8f9fa;
+				--shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+				--radius: 14px; 
+			}
 			.team-members {
 				display: flex;
 				flex-wrap: wrap;
@@ -33,6 +46,55 @@
 				font-size: 16px;
 			}
 
+			.section-header {
+				text-align: center;
+				margin-bottom: 20px;
+			}
+
+			.section-title {
+				font-size: 2.0rem;
+				font-weight: 700;
+				color: var(--text);
+				margin-bottom: 12px;
+			}
+
+			/* Abstract */
+			.abstract-card {
+				background: var(--card-bg);
+				padding: 10px 48px; /* reduce top/bottom spacing */
+				border-radius: var(--radius);
+				box-shadow: var(--shadow);
+				font-size: 1.5rem;
+				line-height: 1.8;
+				margin: 0 auto;
+				max-width: 1440px;
+				color:#000000;
+			}
+
+			/* Stats */
+			.stats-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+				gap: 24px;
+				margin-top: 24px;
+			}
+
+			.stat-item {
+				text-align: center;
+			}
+
+			.stat-value {
+				font-size: 2.1rem;
+				font-weight: 800;
+				color: var(--primary);
+				margin-bottom: 6px;
+			}
+
+			.stat-label {
+				font-size: 0.95rem;
+				color: var(--text-light);
+			}
+
 			.video-container {
 				display: flex;
 				justify-content: space-around; /* 中等间距分布 */
@@ -40,6 +102,18 @@
 				flex-wrap: wrap; /* 响应式布局，小屏幕时自动换行 */
 				gap: 30px; /* 视频之间的间距 */
 				margin: 20px 0;
+			}
+
+			.badge {
+				display: inline-flex;
+				align-items: center;
+				background: rgba(45, 90, 241, 0.12);
+				color: var(--primary);
+				padding: 16px 20px;
+				border-radius: 30px;
+				font-weight: 600;
+				font-size: 1.5rem;
+				margin-top: 8px;
 			}
 
 			.video-item {
@@ -60,14 +134,220 @@
 			}
 
 			#header {
-				background:
-						linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%),
-						url('images/Show.0000.jpeg') center/cover no-repeat;
+				background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);
 				min-height: 300px;
-				color: #333;
+				color: #fff;
+			}
+			#header a { color: #fff; }
+			#header .badge { background: rgba(255,255,255,0.18); color: #fff; }
+			/* Improve nav contrast on gradient header */
+			#header #nav > ul > li > a {
+				color: #fff;
+			}
+			/* Paper-style title and author formatting (inspired by FastTD3) */
+			#header .paper-title {
+				color: #f8fafc;
+				font-size: 3em;
+				font-weight: 800;
+				line-height: 1.15;
+				letter-spacing: 0;
+				text-transform: none;
+				margin-top: 0.4em;
+				margin-bottom: 0.2em;
+			}
+			#header .paper-authors {
+				color: #ffffff;
+				font-size: 1.3em;
+				line-height: 1.6;
+				letter-spacing: 0;
+				text-transform: none;
+				margin-top: 0.4em;
+				margin-bottom: 0.2em;
+			}
+			#header .paper-authors sup {
+				font-size: 0.6em;
+				line-height: 0;
+				vertical-align: super;
+				margin-left: 2px;
+				color: #ffffff;
+			}
+			#header .paper-authors strong {
+				color: #ffffff;
+			}
+			#header .paper-affiliations strong {
+				color: #ffffff;
+			}
+			/* Two-line brand title */
+			#header .brand-title {
+				text-transform: none;
+				line-height: 1.2;
+				margin-bottom: 0.2em;
+				letter-spacing: 0;
+				white-space: normal;
+				margin-top: 0; /* reduce space above title */
+			}
+			#header .brand-title a { border: 0; }
+			#header .brand-main {
+				color: #f8d364; /* match star color in badge */
+				font-size: 1.5em;
+				font-family: 'Arvo', serif; /* textured serif for premium feel */
+				font-weight: 700;
+				letter-spacing: 0.5px;
+				text-shadow: 0 2px 4px rgba(0,0,0,0.35), 0 0 12px rgba(255,255,255,0.15);
+			}
+			#header .brand-sub {
+				color: #ffffff;
+				font-size: 1.0em;
+				font-weight: 700;
+				text-transform: none;
+			}
+			#main .brand-sub {
+				color: #ffffff;
+				font-size: 1.0em;
+				font-weight: 700;
+				text-transform: none;
+			}
+			/* Widen header container on desktop to encourage two-line wrap */
+			@media screen and (min-width: 981px) {
+				#header > .container {
+					width: 96em;
+					padding-top: 10em; /* tighten space above title */
+				}
+			}
+			/* Tweak badge and author/nav spacing */
+			#header .badge {
+				margin-top: 3.0em;
+				margin-bottom: 0.3em; /* more space between badge and authors */
+			}
+			#header .paper-authors {
+				margin-top: 0.7em;
+				margin-bottom: 0.4em; /* less space below authors */
+			}
+			#header .paper-affiliations {
+				margin-top: 0.05em;
+				margin-bottom: 0; /* compact affiliations-bottom gap */
+			}
+			#header #nav {
+				margin-top: 0; /* minimize gap below authors/affiliations */
+			}
+			/* Pull up the bottom edge of the header area to sit closer to authors */
+			#header > .container {
+				padding-bottom: 2.0em;
+			}
+			#header .paper-affiliations {
+				color: #e9f2ff;
+				font-size: 1.2em;
+				line-height: 1.5;
+				margin-top: 0.2em;
+				margin-bottom: 0.2em;
+				text-transform: none;
+			}
+			#header .paper-emails { display: none; }
+			#header #nav > ul > li > a > span {
+				color: #fff;
+				text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+			}
+			#header #nav > ul > li > a:before {
+				background: rgba(255,255,255,0.22);
+				color: #fff;
+			}
+			#header #nav > ul > li.active > a > span,
+			#header #nav > ul > li:hover > a > span {
+				color: #fff;
+			}
+			#header #nav > ul > li.active > a:before,
+			#header #nav > ul > li:hover > a:before {
+				background: rgba(255,255,255,0.35);
+				color: #fff;
+			}
+			/* Enlarge all nav item texts to match Overview */
+			#header #nav > ul > li > a > span {
+				font-size: 1.4em;
+				font-weight: 600;
 			}
 			html {
 				scroll-behavior: smooth;
+			}
+			.buttons-horizontal {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        	}
+
+			.btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 8px; /* 减少图标与文字间距 */
+				padding: 8px 16px; /* 显著减少垂直内边距 */
+				text-decoration: none;
+				border-radius: 6px; /* 稍微减小圆角 */
+				font-weight: 600;
+				font-size: 16px; /* 减小字体大小 */
+				transition: all 0.3s ease;
+				box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 减小阴影 */
+				border: none;
+				cursor: pointer;
+				text-align: center;
+				white-space: nowrap;
+				height: 30px; /* 固定高度确保一致性 */
+				line-height: 1; /* 确保文字垂直居中 */
+			}
+        
+			/* 不同按钮样式 */
+			.btn-pdf {
+				background-color: #f09c95;
+				color: white;
+			}
+			.btn-pdf:hover {
+				background-color: #c0392b;
+				transform: translateY(-3px);
+				box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+			}
+			
+			.btn-platform {
+				background-color: #8ac7f0;
+				color: white;
+			}
+			
+			.btn-platform:hover {
+				background-color: #2980b9;
+				transform: translateY(-3px);
+				box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+			}
+			
+			.btn-dataset {
+				background-color: #86f3b4;
+				color: white;
+			}
+			
+			.btn-dataset:hover {
+				background-color: #27ae60;
+				transform: translateY(-3px);
+				box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+			}
+			
+			.btn-github {
+				background-color: #86b8eb;
+				color: white;
+			}
+			
+			.btn-github:hover {
+				background-color: #1a252f;
+				transform: translateY(-3px);
+				box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+			}
+			
+			.btn-tutorial {
+				background-color: #d591f0;
+				color: white;
+			}
+			
+			.btn-tutorial:hover {
+				background-color: #8e44ad;
+				transform: translateY(-3px);
+				box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 			}
 
 			.citation{
@@ -78,328 +358,618 @@
 				font-family: "Times New Roman", serif; /* 学术风格字体 */
 				line-height: 1.6;              /* 行高 */
 			}
+			.citation-content {
+				text-indent: -2em; /* 首行缩进-2字符 */
+				padding-left: 2em; /* 整体左移2字符 */
+			}
+			.citation-content br {
+				display: block;
+				content: "";
+				margin-top: 0.5em;
+			}
+			/* Compact vertical rhythm between sections */
+			#page-wrapper > section { margin-bottom: 0em !important; }
+			#main { padding: 2em 0 !important; }
+			/* Animated outer dashed frame */
+			.moving-dashed {
+				position: relative;
+			}
+			.moving-dashed::before {
+				content: '';
+				position: absolute;
+				inset: -10px; /* outer frame */
+				border-radius: 10px;
+				/* create dashed effect with repeating gradient and animate its offset */
+				background: repeating-linear-gradient(
+					90deg,
+					rgba(248, 211, 100, 0.95) 0 12px,
+					rgba(248, 211, 100, 0) 12px 24px
+				);
+				background-size: 24px 2px;
+				background-repeat: repeat-x;
+				background-position: 0 0;
+				/* show only the border ring via mask */
+				-webkit-mask:
+					linear-gradient(#000 0 0) padding-box,
+					linear-gradient(#000 0 0);
+				-webkit-mask-composite: xor;
+				mask-composite: exclude;
+				padding: 2px;
+				animation: dash-move 2.5s linear infinite;
+			}
+			@keyframes dash-move {
+				to { background-position: 24px 0; }
+			}
 		</style>
 
 	</head>
 	<body class="no-sidebar is-preload">
 		<div id="page-wrapper">
-
 			<!-- Header -->
 				<section id="header">
 					<div class="container">
 
 						<!-- Logo -->
-							<h1 id="logo"><a href="index.html">U2UData-2</a></h1>
-							<p>A Scalable Swarm UAVs Autonomous Flight Dataset \\for Embodied Long-horizon Tasks</p>
+							<h1 id="logo" class="brand-title">
+								<a href="index.html">
+									<span class="brand-main">U2UDATA+:</span>
+									<span class="brand-sub">A Scalable Swarm UAVs Autonomous Flight Dataset for Embodied Long-Horizon Tasks</span>
+								</a>
+							</h1>
+
+							<div class="buttons-horizontal">
+								<a href="file/U2UData+.pdf" class="btn btn-pdf"><i class="fas fa-file-pdf"></i> Full Paper (PDF)</a>
+								<a href="https://huggingface.co/datasets/fengtt42/U2USim-2/tree/main" class="btn btn-platform"><i class="fas fa-file-alt"></i> Platform: U2USim+</a>
+								<a href="https://huggingface.co/datasets/fengtt42/U2UData-2/tree/main" class="btn btn-dataset"><i class="fas fa-database"></i> Dataset: U2UData+</a>
+								<a href="https://github.com/fengtt42/U2UData-2" class="btn btn-github"><i class="fab fa-github"></i> Benchmark: GitHub</a>
+								<a href="https://huggingface.co/fengtt42/U2UData_2_Client/tree/main" class="btn btn-tutorial"><i class="fas fa-video"></i> Tutorial: Client</a>
+							</div>
+							
+							<div class="badge">⭐ ACM MM 2024 Oral, Best Paper Nomination</div>
+							<div class="badge">⭐ ACM MM Demo 2024</div>
+							<div class="badge">⭐ AAAI 2026 Poster</div>
+
+							<p class="paper-authors">
+								<strong>Tongtong Feng</strong><sup>1</sup>,
+								<strong>Xin Wang</strong><sup>1*</sup>,
+								<strong>Feilin Han</strong><sup>2</sup>,
+								<strong>Leping Zhang</strong><sup>2</sup>,
+								<strong>Wenwu Zhu</strong><sup>1*</sup>
+							</p>
+							<p class="paper-authors">
+								<sup>1</sup><strong>Tsinghua University</strong>  <span style="opacity:0.7;">|</span>  <sup>2</sup><strong>Beijing Film Academy</strong>
+							</p>
 
 						<!-- Nav -->
 							<nav id="nav">
 								<ul>
-									<li><a class="icon solid fa-home" href="index.html"><span>Overview</span></a></li>
-									<li><a class="icon solid fa-file" href="file/U2UData_2.pdf"><span>Paper</span></a></li>
-									<li><a class="icon solid fa-code-branch" href="https://huggingface.co/datasets/fengtt42/U2USim-2/tree/main"><span>Simulator</span></a></li>
-									<li><a class="icon solid fa-file" href="https://huggingface.co/fengtt42/U2UData_2_Client/tree/main"><span>Client</span></a></li>
-									<li><a class="icon solid fa-sitemap" href="https://huggingface.co/datasets/fengtt42/U2UData-2/tree/main"><span>Dataset</span></a></li>
-									<li><a class="icon solid fa-paper-plane" href="#team"><span>Team</span></a></li>
+									<li><a class="icon solid fa-home" href="#overview"><span>Overview</span></a></li>
+									<li><a class="icon solid fa-code-branch" href="#Simulator"><span>Simulator: U2USim+</span></a></li>
+									<li><a class="icon solid fa-sitemap" href="#Dataset"><span>Dataset: U2UData+</span></a></li>
+									<li><a class="icon solid fa-code" href="#Benchmark"><span>Benchmark: code</span></a></li>
+									<li><a class="icon solid fa-paper-plane" href="#Task"><span>ELH Tasks</span></a></li>
+									<li><a class="icon solid fa-file" href="#Tutorial"><span>Tutorial: Demo</span></a></li>
 								</ul>
 							</nav>
 					</div>
 				</section>
-
 			<!-- Main -->
+			<!-- Abstract -->
 				<section id="main">
-					<div class="container">
-						<div id="content">
-
-							<!-- Post -->
-								<article class="box post">
-									<header>
-										<h2><strong>Abstract</strong></h2>
-									</header>
-
-									<p>Swarm UAV autonomous flight for Long-Horizon (LH) tasks is crucial for advancing the low-altitude economy. However, the maximum trajectory length in existing swarm UAV autonomous flight datasets is limited to 15 seconds per flight path, which fails to explore LH tasks. This paper presents U2UData-2, <strong>the first large-scale swarm UAV autonomous flight dataset for LH tasks and the first scalable data collection platform.</strong> The dataset is captured by 15 UAVs in autonomous collaborative flights for LH tasks, comprising 12 scenes (weather and terrain combination), 720 traces, 120 hours (each trace 10 minutes), 4.32M LiDAR frames, and 12.96M RGB frames. They also include brightness, temperature, humidity, smoke, and airflow values covering all flight routes. The data collection platform supports the customization of simulators, UAVs, sensors, flight algorithms, formation modes, and LH tasks. Through its visual control window, U2UData-2 allows users to collect customized datasets through one-click deployment online and to verify algorithms by closed-loop simulation. U2UData-2 can be found at https://fengtt42.github.io/U2UData-2/.</p>
-
-<!--									<span class="image featured"><img src="images/overview.png" alt="" /></span>-->
-									<div class="video-container">
-										<figure class="video-item" >
-											<img src="images/overview.png" alt="Figure1" width="1400">
-<!--											<figcaption>Landcsape</figcaption>-->
-										</figure>
-									</div>
-
-									<figure class="video-item">
-										<video controls width="1400">
-											<source src="images/Low.mp4" type="video/mp4">
-										</video>
-									</figure>
-
-									<div style="background-color: #FFFFFF;text-align: center"><font color="#FFFFFF"> U2UData-2 Demo. </font></div>
-
-
-									<div style="background-color: #d5d5d5;text-align: center">
-										<h2><strong>Real-world Mapping Simulator</strong></h2>
-									</div>
-
-									<div class="video-container">
-										<figure class="video-item">
-											<video controls width="600">
-												<source src="images/OverView.mp4#t=1" type="video/mp4">
-											</video>
-											<figcaption>Overview</figcaption>
-										</figure>
-
-										<figure class="video-item" >
-											<img src="images/1-2.png" alt="Figure1" width="700">
-											<figcaption>Landcsape</figcaption>
-										</figure>
-									</div>
-
-									<div class="video-container">
-										<figure class="video-item">
-											<video controls width="400">
-												<source src="images/sunny.mp4" type="video/mp4">
-											</video>
-											<figcaption>Sunny</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<video controls width="400">
-												<source src="images/rain.mp4" type="video/mp4">
-											</video>
-											<figcaption>Rain</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<video controls width="400">
-												<source src="images/snow.mp4" type="video/mp4">
-											</video>
-											<figcaption>Snow</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<video controls width="400">
-												<source src="images/dust.mp4" type="video/mp4">
-											</video>
-											<figcaption>Sandstorm</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<video controls width="400">
-												<source src="images/fog.mp4" type="video/mp4">
-											</video>
-											<figcaption>Fog</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<video controls width="400">
-												<source src="images/thunder.mp4" type="video/mp4">
-											</video>
-											<figcaption>Thunder</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<video controls width="400">
-												<source src="images/overcast.mp4" type="video/mp4">
-											</video>
-											<figcaption>Wind</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<video controls width="400">
-												<source src="images/lake.mp4" type="video/mp4">
-											</video>
-											<figcaption>Lake Side</figcaption>
-										</figure>
-
-										<figure class="video-item" >
-											<img src="images/LandScape.jpg" alt="Figure1" width="410">
-											<figcaption>Landcsape</figcaption>
-										</figure>
-									</div>
-
-									<div style="background-color: #d5d5d5;text-align: center">
-									<h2><strong>Scalable Simulator</strong></h2>
-									</div>
-									<div class="video-container">
-										<figure class="video-item">
-											<img src="images/ALLStars.jpg" alt="Figure1" width="410">
-											<figcaption>Scalable animal quantity and activity range.</figcaption>
-										</figure>
-										<figure class="video-item">
-											<img src="images/Window.png" alt="Figure1" width="410">
-											<figcaption>Visual control window.</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<video controls width="400">
-												<source src="images/TaskB.mp4" type="video/mp4">
-											</video>
-											<figcaption>Customized video demo.</figcaption>
-										</figure>
-									</div>
-									<div class="video-container">
-										<figure class="video-item">
-											<img src="images/Colored_1.1.1.jpg" alt="Figure1" width="410">
-											<figcaption>Scalable simulator</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<img src="images/Colored_1.1.2.jpg" alt="Figure1" width="410">
-											<figcaption>Scalable simulator</figcaption>
-										</figure>
-
-										<figure class="video-item">
-											<img src="images/Colored_1.1.3.jpg" alt="Figure1" width="410">
-											<figcaption>Scalable simulator</figcaption>
-										</figure>
-									</div>
-
-
-
-									<div style="background-color: #d5d5d5;text-align: center">
-									<h2><strong>U2UData-2 Dataset Setting</strong></h2>
-									</div>
-									<div class="video-container">
-										<figure class="video-item" >
-											<img src="images/drone.png" alt="Figure1" width="400">
-											<figcaption>Sensor positions</figcaption>
-										</figure>
-										<figure class="video-item" >
-											<img src="images/22.png" alt="Figure1" width="700">
-											<figcaption>Sensor types</figcaption>
-										</figure>
-									</div>
-
-									<div class="video-container">
-										<figure class="video-item" >
-											<img src="images/Table3.png" alt="Figure1" width="600">
-											<figcaption>Scene settings. ESTN:The trajectory number of each scene.</figcaption>
-										</figure>
-										<figure class="video-item" >
-											<img src="images/Table4.png" alt="Figure1" width="700">
-											<figcaption>Data collection settings. ET-Length:The length of each trajectory.</figcaption>
-										</figure>
-										<figure class="video-item" >
-											<img src="images/FlyTypeA.png" alt="Figure1" width="400">
-											<figcaption>Discipline formation mode</figcaption>
-										</figure>
-										<figure class="video-item" >
-											<img src="images/FlyTypeB.png" alt="Figure1" width="400">
-											<figcaption>Fixed formation mode</figcaption>
-										</figure>
-										<figure class="video-item" >
-											<img src="images/FlyTypeC.png" alt="Figure1" width="400">
-											<figcaption>Autonomous formation mode</figcaption>
-										</figure>
-									</div>
-
-									<div style="background-color: #FFFFFF;text-align: center"><font color="#FFFFFF"> U2UData-2 Demo. </font></div>
-
-
-									<div style="background-color: #d5d5d5;text-align: center">
-									<h2><strong>U2UData-2 Dataset Analysis</strong></h2>
-									</div>
-
-									<div class="video-container">
-										<figure class="video-item" >
-											<img src="images/Table1.png" alt="Figure1" width="1400">
-											<figcaption>A detailed comparison of swarm UAV datasets. -indicates that specific information is not provided. DF:Discipline
-												formation mode; FF:Fixed formation mode; AF:Autonomous formation mode. ET-Length:
-												Each Trajectory Length. U2USim★ represents the scalable U2USim.</figcaption>
-										</figure>
-										<figure class="video-item" >
-											<img src="images/Table2.png" alt="Figure1" width="1200">
-											<figcaption>A detailed comparison of the data size between U2UData-2 with existing swarm UAV datasets.</figcaption>
-										</figure>
-									</div>
-
-
-<!--									<img src="images/dataana.png" height="5448" width="8192"/>-->
-									<div style="background-color: #d5d5d5;text-align: center">
-									<h2><strong>Long-Horizon Tasks</strong></h2>
-									</div>
-
-									<div class="video-container">
-										<figure class="video-item" >
-											<img src="images/C_1_1.jpg" alt="Figure1" width="410">
-											<figcaption>Collaborative communication</figcaption>
-										</figure>
-										<figure class="video-item">
-											<img src="images/C_1_2.jpg" alt="Figure1" width="410">
-											<figcaption>Collaborative perception</figcaption>
-										</figure>
-										<figure class="video-item">
-											<img src="images/C_1_3.jpg" alt="Figure1" width="410">
-											<figcaption>Collaborative localization</figcaption>
-										</figure>
-										<figure class="video-item">
-											<img src="images/C_2_1.jpg" alt="Figure1" width="410">
-											<figcaption>Collaborative perception</figcaption>
-										</figure>
-										<figure class="video-item">
-											<img src="images/C_2_2.jpg" alt="Figure1" width="410">
-											<figcaption>Collaborative communication</figcaption>
-										</figure>
-										<figure class="video-item">
-											<img src="images/C_2_3.jpg" alt="Figure1" width="410">
-											<figcaption>Collaborative task re-allocation</figcaption>
-										</figure>
-									</div>
-
-									<div style="background-color: #d5d5d5;text-align: center">
-									<h2><strong>Cite</strong></h2>
-									</div>
-									<h3><strong><font color=red>U2UData is nominated for the Best Paper in ACM Multimedia 2024.</font></strong></h3>
-
-									<div class="citation">
-									@inproceedings{10.1145/3664647.3681151,<br>
-									author = {Feng, Tongtong and Wang, Xin and Han, Feilin and Zhang, Leping and Zhu, Wenwu},<br>
-									title = {U2UData: A Large-scale Cooperative Perception Dataset for Swarm UAVs Autonomous Flight},<br>
-									year = {2024},<br>
-									booktitle = {Proceedings of the 32nd ACM International Conference on Multimedia},<br>
-									pages = {7600–7608},<br>
-									numpages = {9}<br>
-									}
-									</div>
-
-									<hr>
-									<div style="background-color: #d5d5d5;text-align: center">
-									<h2><strong>Team</strong></h2>
-									</div>
-									<div id="team" class="team-members">
-										<figure class="member">
-											<img src="images/ftt.png" alt="People1" width="200">
-											<figcaption>Tongtong Feng</figcaption>
-										</figure>
-										<figure class="member">
-											<img src="images/wx.jpg" alt="People2" width="200">
-											<figcaption>Xin Wang</figcaption>
-										</figure>
-										<figure class="member">
-											<img src="images/Fiona.jpg" alt="People3" width="200">
-											<figcaption>Feilin Han</figcaption>
-										</figure>
-										<figure class="member">
-											<img src="images/zlp.jpg" alt="People4" width="200">
-											<figcaption>Leping Zhang</figcaption>
-										</figure>
-										<figure class="member">
-											<img src="images/zww.jpg" alt="People5" width="200">
-											<figcaption>Wenwu Zhu</figcaption>
-										</figure>
-									</div>
-<!--									<strong><i class="fa fa-envelope"></i> lead developers.   * Equal contribution.   † Equal advising.</strong>-->
-								</article>
-							<div style="display: flex; justify-content: flex-end; align-items: flex-end; min-height: 100px;">
-								<div style="font-size: medium; margin-right: 1em;">
-									<p>AEAI Lab ©2025</p>
-								</div>
-							</div>
+					<div id="overview" class="container">
+						<div style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);text-align: center; color: #ffffff;">
+							<h2>
+								<span class="brand-sub">OVERVIEW</span>
+							</h2>
+						</div>
+						<div class="video-container">
+							<figure class="video-item" >
+								<img src="images/overview.png" alt="Figure1" width="1400">
+								<!-- <figcaption>Swarm UAV autonomous flight</figcaption> -->
+							</figure>
+						</div>
+						<div class="abstract-card">
+							<p>
+								Swarm UAV autonomous flight for Embodied Long-Horizon (ELH) tasks is crucial for advancing the low-altitude economy. 
+								However, existing methods focus only on specific basic tasks due to dataset limitations, failing in real-world deployment for ELH tasks. 
+								ELH tasks are not mere concatenations of basic tasks, requiring handling long-term dependencies, maintaining embodied persistent states, and adapting to dynamic goal shifts. 
+								This paper presents <b><font color=#0ea5e9>U2UData+, the first large-scale swarm UAV autonomous flight dataset for ELH tasks and the first scalable swarm UAV data online collection and algorithm closed-loop verification platform</font></b>. 
+								The dataset is captured by 15 UAVs in autonomous collaborative flights for ELH tasks, comprising 12 scenes, 720 traces, 120 hours, 600 seconds per trajectory, 4.32M LiDAR frames, and 12.96M RGB frames. 
+								This dataset also includes brightness, temperature, humidity, smoke, and airflow values covering all flight routes. 
+								The platform supports the customization of simulators, UAVs, sensors, flight algorithms, formation modes, and ELH tasks. 
+								Through a visual control window, this platform allows users to collect customized datasets through one-click deployment online and to verify algorithms by closed-loop simulation. 
+								U2UData+ also introduces an ELH task for wildlife conservation and provides comprehensive benchmarks with 9 SOTA models.
+							</p>
 						</div>
 					</div>
 				</section>
+			<!-- Simulator -->
+				<section id="main">
+				<div id="Simulator" class="container">
+					<div style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);text-align: center; color: #ffffff;">
+						<h2>
+							<span class="brand-sub">SIMULATOR: U2USIM+</span>
+						</h2>
+					</div>
+					<div class="abstract-card">
+						<!-- <div class="section-header">
+							<h2 class="section-title">The Real-world Mapping Simulator Scale</h2>
+						</div> -->
+						<div class="stats-grid">
+							<div class="stat-item">
+							<div class="stat-value">4</div>
+							<div class="stat-label">Terrains</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">7</div>
+							<div class="stat-label">Weather conditions</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">8</div>
+							<div class="stat-label">Sensor types</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">9km<sup>2</sup></div>
+							<div class="stat-label">Flight area</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">58</div>
+							<div class="stat-label">Forest vegetation assets</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">15</div>
+							<div class="stat-label">Animals</div>
+							</div>
+						</div>
+					</div>
+					<h1><font color="#ffffff">simulator</font></h1>
 
+					<div class="video-container">
+						<figure class="video-item">
+							<video controls width="600">
+								<source src="images/OverView.mp4#t=1" type="video/mp4">
+							</video>
+							<figcaption>U2USim</figcaption>
+						</figure>
 
+						<figure class="video-item" >
+							<img src="images/1-2.png" alt="Figure1" width="700">
+							<figcaption>Landcsape</figcaption>
+						</figure>
+					</div>
+
+					<div class="video-container">
+						<figure class="video-item">
+							<video controls width="400">
+								<source src="images/sunny.mp4" type="video/mp4">
+							</video>
+							<figcaption>Sunny</figcaption>
+						</figure>
+
+						<figure class="video-item">
+							<video controls width="400">
+								<source src="images/rain.mp4" type="video/mp4">
+							</video>
+							<figcaption>Rain</figcaption>
+						</figure>
+
+						<figure class="video-item">
+							<video controls width="400">
+								<source src="images/snow.mp4" type="video/mp4">
+							</video>
+							<figcaption>Snow</figcaption>
+						</figure>
+
+						<figure class="video-item">
+							<video controls width="400">
+								<source src="images/dust.mp4" type="video/mp4">
+							</video>
+							<figcaption>Sandstorm</figcaption>
+						</figure>
+
+						<figure class="video-item">
+							<video controls width="400">
+								<source src="images/fog.mp4" type="video/mp4">
+							</video>
+							<figcaption>Fog</figcaption>
+						</figure>
+
+						<figure class="video-item">
+							<video controls width="400">
+								<source src="images/thunder.mp4" type="video/mp4">
+							</video>
+							<figcaption>Thunder</figcaption>
+						</figure>
+
+						<figure class="video-item">
+							<video controls width="400">
+								<source src="images/overcast.mp4" type="video/mp4">
+							</video>
+							<figcaption>Wind</figcaption>
+						</figure>
+
+						<figure class="video-item">
+							<video controls width="400">
+								<source src="images/lake.mp4" type="video/mp4">
+							</video>
+							<figcaption>Lake Side</figcaption>
+						</figure>
+
+						<figure class="video-item" >
+							<img src="images/LandScape.jpg" alt="Figure1" width="410">
+							<figcaption>Terrains</figcaption>
+						</figure>
+					</div>
+					<div class="abstract-card">
+						<!-- <div class="section-header">
+							<h2 class="section-title">The Real-world Mapping Simulator Scale</h2>
+						</div> -->
+						<div class="stats-grid">
+							<div class="stat-item">
+							<div class="stat-value">Simulator</div>
+							<div class="stat-label">Customization</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">UAV</div>
+							<div class="stat-label">Customization</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">Sensor</div>
+							<div class="stat-label">Customization</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">Flight Algo.</div>
+							<div class="stat-label">Customization</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">Formation</div>
+							<div class="stat-label">Customization</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">ELH Task</div>
+							<div class="stat-label">Customization</div>
+							</div>
+						</div>
+					</div>
+					<h1><font color="#ffffff">simulator</font></h1>
+
+					<div class="video-container">
+						<figure class="video-item">
+							<img src="images/ALLStars.jpg" alt="Figure1" width="650" height="400">
+							<figcaption>U2USim+</figcaption>
+						</figure>
+						<figure class="video-item">
+							<img src="images/Window.png" alt="Figure1" width="650" height="400">
+							<figcaption>Visual control window</figcaption>
+						</figure>
+					</div>
+
+					<div class="video-container">
+						<figure class="video-item">
+							<img src="images/scalable_map.png" alt="Figure1" width="1370">
+							<figcaption>The scalable UAVs data online collection and algorithm closed-loop verification platform. Wind throughout the map.</figcaption>
+						</figure>
+					</div>
+
+					<div class="video-container">
+						<figure class="video-item">
+							<img src="images/Colored_1.1.1.jpg" alt="Figure1" width="410">
+							<figcaption>Scalable animal behavior</figcaption>
+						</figure>
+
+						<figure class="video-item">
+							<img src="images/Colored_1.1.2.jpg" alt="Figure1" width="410">
+							<figcaption>Scalable animal behavior</figcaption>
+						</figure>
+
+						<figure class="video-item">
+							<img src="images/Colored_1.1.3.jpg" alt="Figure1" width="410">
+							<figcaption>Scalable animal behavior</figcaption>
+						</figure>
+					</div>
+				</div>
+			</section>
+			<!-- Dataset -->
+			<section id="main">
+				<div id="Dataset" class="container">
+					<div style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);text-align: center; color: #ffffff;">
+						<h2>
+							<span class="brand-sub">DATASET: U2UDATA+</span>
+						</h2>
+					</div>
+					<div class="abstract-card">
+						<div class="section-header">
+							<h2 class="section-title">Dataset Scale</h2>
+						</div>
+						<div class="stats-grid">
+							<div class="stat-item">
+							<div class="stat-value">15</div>
+							<div class="stat-label">UAVs</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">12</div>
+							<div class="stat-label">Scenes</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">720</div>
+							<div class="stat-label">Traces</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">120h</div>
+							<div class="stat-label">Total Flight Time</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">4.32M</div>
+							<div class="stat-label">LiDAR Frames</div>
+							</div>
+							<div class="stat-item">
+							<div class="stat-value">12.96M</div>
+							<div class="stat-label">RGB Frames</div>
+							</div>
+						</div>
+					</div>
+					<h1><font color=#ffffff>Data</font></h1>
+
+					<div class="abstract-card">
+						<div class="section-header">
+							<h2 class="section-title">Dataset Collection</h2>
+						</div>
+						<div class="video-container">
+							<figure class="video-item" >
+								<img src="images/drone.png" alt="Figure1" width="400">
+								<figcaption>Sensor positions</figcaption>
+							</figure>
+							<figure class="video-item" >
+								<img src="images/22.png" alt="Figure1" width="650">
+								<figcaption>Sensor types</figcaption>
+							</figure>
+							<figure class="video-item" >
+								<img src="images/FlyTypeA.png" alt="Figure1" width="380">
+								<figcaption>Discipline formation mode</figcaption>
+							</figure>
+							<figure class="video-item" >
+								<img src="images/FlyTypeB.png" alt="Figure1" width="380">
+								<figcaption>Fixed formation mode</figcaption>
+							</figure>
+							<figure class="video-item" >
+								<img src="images/FlyTypeC.png" alt="Figure1" width="430">
+								<figcaption>Autonomous formation mode</figcaption>
+							</figure>
+						</div>
+					</div>
+					<h1><font color=#ffffff>Data</font></h1>
+
+					<div class="abstract-card">
+						<div class="section-header">
+							<h2 class="section-title">Dataset Analysis</h2>
+						</div>
+						<div class="video-container">
+							<figure class="video-item" >
+								<img src="images/Table1.png" alt="Figure1" width="1270">
+								<figcaption>A detailed comparison of swarm UAV datasets. <br> -indicates that specific information is not provided. DF:Discipline
+									formation mode; FF:Fixed formation mode; AF:Autonomous formation mode. U2USim★ represents the scalable U2USim.</figcaption>
+							</figure>
+							<figure class="video-item" >
+								<img src="images/Table3.png" alt="Figure1" width="520">
+								<figcaption>ESTN:The trajectory number of each scene.</figcaption>
+							</figure>
+							<figure class="video-item" >
+								<img src="images/Table4.png" alt="Figure1" width="680">
+								<figcaption>ET-Length:The length of each trajectory. TNT: The total length of trajectories</figcaption>
+							</figure>
+							<figure class="video-item" >
+								<img src="images/Table2.png" alt="Figure1" width="1270">
+								<figcaption>A detailed comparison of the data size between U2UData-2 with existing swarm UAV datasets.</figcaption>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- Benchmark -->
+			<section id="main">
+				<div id="Benchmark" class="container">
+					<div style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);text-align: center; color: #ffffff;">
+						<h2>
+							<span class="brand-sub">BENCHMARK: CODE</span>
+						</h2>
+					</div>
+					<div class="video-container">
+						<figure class="video-item" >
+							<img src="images/Table6.png" alt="Figure1" width="1000">
+							<figcaption>Swarm UAV collaborative tracking benchmark for ELH tasks in the U2UData+ dataset.</figcaption>
+						</figure>
+					</div>
+					<div class="abstract-card">
+						<p>
+							This benchmark uses <font color=#0ea5e9>9 SOAT collaborative tracking algorithms</font>, including No Fusion,  Late  Fusion,  Early  Fusion,  When2Com  (Liu  et  al. 2020),  DiscoNet  (Li  et  al.  2021),  V2VNet  (Wang  et  al.2020),  V2X-ViT  (Xu  et  al.  2022b),  CoBEVT  (Xu  et  al.2022a), and Where2com (Hu et al. 2022). 
+							This benchmark will be updated dynamically afterwards.
+						</p>
+					</div>
+				</div>
+			</section>
+			<!-- Task -->
+			<section id="main">
+				<div id="Task" class="container">
+					<div style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);text-align: center; color: #ffffff;">
+						<h2>
+							<span class="brand-sub">EMBODIED LONG-HORIZON TASKS</span>
+						</h2>
+					</div>
+					<div class="video-container">
+						<figure class="video-item" >
+							<img src="images/C_1_1.jpg" alt="Figure1" width="410">
+							<figcaption>Collaborative communication</figcaption>
+						</figure>
+						<figure class="video-item">
+							<img src="images/C_1_2.jpg" alt="Figure1" width="410">
+							<figcaption>Collaborative perception</figcaption>
+						</figure>
+						<figure class="video-item">
+							<img src="images/C_1_3.jpg" alt="Figure1" width="410">
+							<figcaption>Collaborative localization</figcaption>
+						</figure>
+						<figure class="video-item">
+							<img src="images/C_2_1.jpg" alt="Figure1" width="410">
+							<figcaption>Collaborative perception</figcaption>
+						</figure>
+						<figure class="video-item">
+							<img src="images/C_2_2.jpg" alt="Figure1" width="410">
+							<figcaption>Collaborative communication</figcaption>
+						</figure>
+						<figure class="video-item">
+							<img src="images/C_2_3.jpg" alt="Figure1" width="410">
+							<figcaption>Collaborative task re-allocation</figcaption>
+						</figure>
+					</div>
+					<div class="abstract-card">
+						<p>
+							<font color=#0ea5e9>Embodied Long-Horizon (ELH) tasks</font> is crucial for advancing the low-altitude economy. 
+							ELH tasks are complex, multi-step tasks that require sustained embodied planning, sequential decision-making, and extended execution over a prolonged period to achieve a final goal.
+						</p>
+					</div>
+				</div>
+			</section>
+			<!-- Tutorial -->
+			<section id="main">
+				<div id="Tutorial" class="container">
+					<div style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);text-align: center; color: #ffffff;">
+						<h2>
+							<span class="brand-sub">TUTORIAL: DEMO</span>
+						</h2>
+					</div>
+					<div class="video-container">
+						<figure class="video-item">
+							<video controls width="650">
+								<source src="images/TaskB.mp4" type="video/mp4">
+							</video>
+							<figcaption>U2UData Tutorial Demo.</figcaption>
+						</figure>
+						<figure class="video-item">
+							<video controls width="650">
+								<source src="images/Low.mp4" type="video/mp4">
+							</video>
+							<figcaption>U2UData+ Tutorial Demo.</figcaption>
+						</figure>	
+					</div>
+					<div class="abstract-card">
+						<p>
+							This project provides demo videos in <font color=#0ea5e9>1080P and 4K resolutions</font>.
+							
+							Due to webpage video size limitations, the video content is somewhat blurry.
+						</p>
+					</div>
+				</div>
+			</section>
+			<!-- Cite -->
+			<section id="main">
+				<div id="Cite" class="container">
+					<div style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);text-align: center; color: #ffffff;">
+						<h2>
+							<span class="brand-sub">CITE</span>
+						</h2>
+					</div>
+					<div class="citation">
+						<div class="citation-content">
+							@article{feng2025u2udata,<br>
+								title={U2UData+: A Scalable Swarm UAVs Autonomous Flight Dataset for Embodied Long-horizon Tasks},<br>						
+								author={Feng, Tongtong and Wang, Xin and Han, Feilin and Zhang, Leping and Zhu, Wenwu},	<br>					
+								journal={Thirtieth AAAI Conference on Artificial Intelligence},<br>	
+								year={2025}<br>							
+								}
+						</div>
+					</div>
+					<div class="citation">
+						<div class="citation-content">
+							@article{feng2025embodied,<br>
+								title={Embodied AI: From LLMs to World Models},<br>						
+								author={Feng, Tongtong and Wang, Xin and Jiang, Yu-Gang and Zhu, Wenwu},	<br>					
+								journal={IEEE Circuits and Systems Magazine},<br>	
+								year={2025}<br>							
+								}
+						</div>
+					</div>
+					<div class="citation">
+						<div class="citation-content">
+							@article{feng2025evoagent,<br>
+								title={EvoAgent: Agent Autonomous Evolution with Continual World Model for Long-Horizon Tasks},<br>						
+								author={Feng, Tongtong and Wang, Xin and Zhou, Zekai and Wang, Ren and Zhan, Yuwei and Li, Guangyao and Li, Qing and Zhu, Wenwu},	<br>					
+								journal={arXiv preprint arXiv:2502.05907},<br>	
+								year={2025}<br>							
+								}
+						</div>
+					</div>
+					<div class="citation">
+						<div class="citation-content">
+							@inproceedings{feng2024u2udata,<br>
+								title={U2udata: A large-scale cooperative perception dataset for swarm uavs autonomous flight},<br>
+								author={Feng, Tongtong and Wang, Xin and Han, Feilin and Zhang, Leping and Zhu, Wenwu},<br>
+								booktitle={Proceedings of the 32nd ACM International Conference on Multimedia},<br>
+								pages={7600--7608},<br>
+								year={2024}<br>
+							}
+						</div>
+					</div>
+					<div class="citation">
+						<div class="citation-content">
+							@inproceedings{han2024u2usim,<br>	
+								author = {Han, Feilin and Zhang, Leping and Wang, Xin and Zhao, Ke-Ao and Zhong, Ying and Su, Ziyi and Feng, Tongtong and Zhu, Wenwu},<br>	
+								title = {U2USim - A UAV Telepresence Simulation Platform with Multi-agent Sensing and Dynamic Environment},<br>				
+								year = {2024},<br>					
+								booktitle = {Proceedings of the 32nd ACM International Conference on Multimedia},<br>					
+								pages = {11258–11260}<br>				
+							}
+						</div>
+					</div>
+					<div class="citation">
+						<div class="citation-content">
+							@inproceedings{feng2024multi,<br>	
+								author={Feng, Tongtong and Li, Qing and Wang, Xin and Wang, Mingzi and Li, Guangyao and Zhu, Wenwu},<br>	
+								title={Multi-weather cross-view geo-localization using denoising diffusion models},<br>				
+								year = {2024},<br>					
+								booktitle={Proceedings of the 2nd Workshop on UAVs in Multimedia: Capturing the World from a New Perspective},<br>					
+								pages={35--39}<br>				
+							}
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- Team -->
+			<section id="main">
+				<div id="Team" class="container">
+					<div style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 50%, #a855f7 100%);text-align: center; color: #ffffff;">
+						<h2>
+							<span class="brand-sub">TEAM</span>
+						</h2>
+					</div>
+					<div id="team" class="team-members">
+						<figure class="member">
+							<img src="images/ftt.png" alt="People1" width="200">
+							<figcaption>Tongtong Feng</figcaption>
+						</figure>
+						<figure class="member">
+							<img src="images/wx.jpg" alt="People2" width="200">
+							<figcaption>Xin Wang</figcaption>
+						</figure>
+						<figure class="member">
+							<img src="images/Fiona.jpg" alt="People3" width="200">
+							<figcaption>Feilin Han</figcaption>
+						</figure>
+						<figure class="member">
+							<img src="images/zlp.jpg" alt="People4" width="200">
+							<figcaption>Leping Zhang</figcaption>
+						</figure>
+						<figure class="member">
+							<img src="images/zww.jpg" alt="People5" width="200">
+							<figcaption>Wenwu Zhu</figcaption>
+						</figure>
+					</div>
+					<div style="display: flex; justify-content: flex-end; align-items: flex-end; min-height: 100px;">
+						<div style="font-size: medium; margin-right: 1em;">
+							<p>AEAI Lab ©2025</p>
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
 
 		<!-- Scripts -->
